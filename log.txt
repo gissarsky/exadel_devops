@@ -1,0 +1,25 @@
+commit 5edbe0588d18ebe0710ea3a59eb466bc20791679 (HEAD -> gissarsky-new_feature)
+Author: Emil Garipov <gemil@mail.ru>
+Date:   Tue Aug 3 18:47:24 2021 +0500
+
+    Revert "Another Feature"
+
+    This reverts commit d07deed7817da1958e9659e31d957b81f61fbf2e.
+
+commit d07deed7817da1958e9659e31d957b81f61fbf2e
+Author: Emil Garipov <gemil@mail.ru>
+Date:   Tue Aug 3 18:46:23 2021 +0500
+
+    Another Feature
+
+commit 4a854fb8ed517899d1b89fff26cc12653fcf2d7b (origin/gissarsky-new_feature)
+Author: Emil Garipov <gemil@mail.ru>
+Date:   Tue Aug 3 18:16:05 2021 +0500
+
+    Dev&gissarsky branches
+
+commit bfe00d98b0e58806ac86843adcda0a1c16799492 (origin/master, master)
+Author: Emil Garipov <gemil@mail.ru>
+Date:   Tue Aug 3 17:49:44 2021 +0500
+
+    Readme file
