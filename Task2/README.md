@@ -46,11 +46,19 @@
 **Bash script for second EXTRA task***
 ``` 
 #!/bin/bash
-echo "--------------------Starting Automated Configuration of Apache Server"-----------------"
-sudo yum -y update
-sudo yum -y install httpd
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl start httpd
+sudo systemctl enable httpd
+sudo usermod -a -G apache ec2-user
+sudo chown -R ec2-user:apache /var/www
+sudo chmod 2775 /var/www
+find /var/www -type d -exec chmod 2775 {} \;
+find /var/www -type f -exec chmod 0664 {} \;
 echo "<html><body bgcolor=blue><center><h2><p><font color=red>Hello Exadel DevOps World! OS version - AWS Linux</h2></center></body></html>" > /var/www/html/index.html
-sudo service httpd start
-chkconfig httpd on
-echo "------------------------------------------Ready----------------------------------------"
 ```
+
+Link to the User Guide ["Run commands on your Linux instance at launch"](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html)
+
+Link to the [running instance](http://18.193.74.94/), configured by bash script
+
