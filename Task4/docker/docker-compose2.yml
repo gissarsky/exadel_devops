@@ -1,0 +1,32 @@
+version: "3.4"
+services:
+	exadeldevops: # My image
+        image: exadeldevops/docker
+        ports:
+            - "8080:8080"
+        env_file: exadeldevops.env
+        environment:
+            - DEVOPS="${MYSQL_DATABASE}"
+    java: # Java image
+        container_name: exadeljava
+        image: openjdk:8
+        volumes:
+        - ./:/app
+        working_dir: /app
+        ports:
+            - 8080:8080
+        depends_on: # Starts after starting mysql database
+            - mysql_db
+            links:
+            - mysql_db:app_db
+    mysql_db:
+        image: "mysql:8.0"
+        restart: always
+        ports:
+            - 3306:3306
+        env_file: exadeldevops.env
+        environment:
+            MYSQL_DATABASE="${MYSQL_DATABASE}"
+            MYSQL_USER="${MYSQL_USER}"
+            MYSQL_PASSWORD="${MYSQL_PASSWORD}"
+            MYSQL_ROOT_PASSWORD="${MYSQL_ROOT_PASSWORD}"

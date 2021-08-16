@@ -1,4 +1,4 @@
-# Configure provider AWS, with region eu-west-2
+# Configure provider AWS, with region eu-west-1
 provider "aws" {
     region = "eu-west-1"
 }
@@ -12,6 +12,8 @@ variable env_prefix {}
 variable my_ip {}
 variable instance_type {}
 variable public_key_location {}
+variable private_key_location {}
+variable proxy_port {}
 
 # Create a vpc resource with the custom cidr block range of 10.0.0.0/16  
 
@@ -97,6 +99,14 @@ resource "aws_security_group" "exadel-devops-sg" {
         cidr_blocks = ["0.0.0.0/0"]
         prefix_list_ids = []
     }
+
+    ingress {
+        from_port   = var.proxy_port
+        to_port     = var.proxy_port
+        protocol    = "tcp"
+        cidr_blocks = ["${self.private_ip}/32"]
+    }
+
     tags = {
         Name: "${var.env_prefix}-sg"
     }
@@ -142,32 +152,18 @@ output "aws_ami_ubuntu" {
 
 output "ec2_public_ip" {
     value = aws_instance.aws-ubuntuserver.public_ip
+    description = "Public IP address of the proxy server"
 }
 
-
+output "proxy_port" {
+  value       = var.proxy_port
+  description = "Port of the proxy server"
+}
 # Creating a key pair
 
 resource "aws_key_pair" "ssh-key" {
     key_name = "ssh-server-key"
     public_key = "${file(var.public_key_location)}"
-}
-
-#  Creating an EC2 instance with Amazone Linux image
-
-resource "aws_instance" "aws-amazoneserver" {
-    ami = data.aws_ami.latest-amazon-image.id
-    instance_type = var.instance_type
-    
-    subnet_id = aws_subnet.exadel-devops-subnet-1.id
-    vpc_security_group_ids = [aws_security_group.exadel-devops-sg.id]
-    availability_zone = var.avail_zone
-
-    associate_public_ip_address = "false"
-    key_name = aws_key_pair.ssh-key.key_name
-
-    tags =  {
-        Name: "${var.env_prefix}-amazoneserver"
-    }
 }
 
 #  Creating an EC2 instance with Ubuntu image
@@ -183,9 +179,50 @@ resource "aws_instance" "aws-ubuntuserver" {
     associate_public_ip_address = true
     key_name = aws_key_pair.ssh-key.key_name
 
-    user_data = file("entry-script.sh")
+    
+    connection {
+        type = "ssh"
+        host = self.public_ip
+        user = "ubuntu"
+        private_key = file(var.private_key_location)
+    }
+
+    provisioner "file" {
+        source = "entry-script.sh"
+        destination = "/home/ubuntu/entry-script.sh"
+    }
+    provisioner "file" {
+        source = "proxy.sh"
+        destination = "/home/ubuntu/proxy.sh"
+    }
+
+    provisioner "remote-exec" {
+        scripts = ["entry-script.sh", "proxy.sh"]
+    }
 
     tags =  {
         Name: "${var.env_prefix}-ubuntuserver"
+        Proxy = "${var.env_prefix}-tinyproxy"
     }
 }
+
+#  Creating an EC2 instance with Amazone Linux image
+
+resource "aws_instance" "aws-amazoneserver" {
+    ami = data.aws_ami.latest-amazon-image.id
+    instance_type = var.instance_type
+    
+    subnet_id = aws_subnet.exadel-devops-subnet-1.id
+    vpc_security_group_ids = [aws_security_group.exadel-devops-sg.id]
+    availability_zone = var.avail_zone
+
+    associate_public_ip_address = "false"
+    key_name = aws_key_pair.ssh-key.key_name
+
+    #user_data = file("entry-script.sh")
+
+    tags =  {
+        Name: "${var.env_prefix}-amazoneserver"
+    }
+}
+
