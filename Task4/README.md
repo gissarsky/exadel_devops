@@ -181,6 +181,6 @@ services:
 
 5.1. **EXTRA** Use env files to configure each service.
 
-**This part of the assignment is accomplished by the docker-compose2.yml, exadeldevops.env  and mysql.env files**
+**This part of the assignment is accomplished by the docker-compose2.yml, exadeldevops.env  and mysql.env files in the Docker Folder**
  
 **The task results is the docker/docker-compose files in your GitHub repository**
