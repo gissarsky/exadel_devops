@@ -180,16 +180,25 @@ resource "aws_instance" "aws-ubuntuserver" {
         host = self.public_ip
         user = "ubuntu"
         private_key = file(var.private_key_location)
+        agent = true
+    }
+    provisioner "remote-exec" {
+        script = file ("docker-dir.sh")
     }
 
     provisioner "file" {
-        source = "/home/gissarsky/.ssh/id_rsa"
-        destination = "/home/ubuntu/.ssh/id_rsa"
+        source = "/home/gissarsky/exadel/exadel_devops/Task5/hosts"
+        destination = "/home/ubuntu/docker/hosts"
     }
 
     provisioner "file" {
-        source = "/home/gissarsky/.ssh/id_rsa.pub"
-        destination = "/home/ubuntu/.ssh/id_rsa.pub"
+        source = "/home/gissarsky/exadel/exadel_devops/Task5/ansible.cfg"
+        destination = "/home/ubuntu/docker/ansible.cfg"
+    }
+
+    provisioner "file" {
+        source = "/home/gissarsky/exadel/exadel_devops/Task5/deploy-docker.yaml"
+        destination = "/home/ubuntu/docker/deploy-docker.yaml"
     }
 
     provisioner "remote-exec" {

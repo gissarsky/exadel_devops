@@ -22,7 +22,7 @@ Ping pong - execute the built-in ansible ping command. Ping the other two machin
 
 **This part of the assignment is accomplished by next steps**
 1. By creating a **host** file on the Ubuntu server with the ip addresses of the servers. Connection via ssh is only allowed via a private ip-address range - 10.0.10.0/24:
- 
+
 ```
 [ec2]
 10.0.10.202
@@ -65,7 +65,46 @@ ubuntu@ip-10-0-10-51:~/ansible$
 ```
 My First Playbook: write a playbook for installing Docker on two machines and run it.
 
+**This part of the assignment is accomplished by next steps**
 
+> There will be 3 AWS EC2 instances servers deployed using Terraform. Two servers named "aws-amazoneserver-1" and "aws-amazoneserver-2" based on the AWS Linux image and 1 server named "aws-ubuntuserver" based on the Ubuntu image. Ansilbe will be installed on the Ubuntu server (see the file ansible-install-ubuntu.sh) as the control plane. 
+Access via ssh to the "aws-amazoneserver-1" and "aws-amazoneserver-2" servers is only available via subnet 10.0.10.0.24, where all 3 installed servers are located. 
+External ssh access is only available to the server "aws-ubuntuserver" on which Ansible will be installed.
+
+
+>Therefore it was decided to send the hosts, ansible.cfg and playbook "deploy-docker.yaml" to deploy docker to the server "aws-ubuntuserver" using the terraform provisioner "file"(see the file main.tf) 
+
+
+1. After all the necessary files have been transferred to "aws-ubuntuserver", you have to connect via ssh to the server and run the command:
+
+```
+ansible-playbook deploy-docker.yaml
+```
+
+**Output should be as follow**:
+
+```
+ubuntu@ip-10-0-10-125:~/docker$ ansible-playbook deploy-docker.yaml
+
+PLAY [Install Docker] **************************************************************************************************
+
+TASK [Gathering Facts] *************************************************************************************************
+Enter passphrase for key '/home/ubuntu/.ssh/id_rsa':
+[WARNING]: Platform linux on host 10.0.10.227 is using the discovered Python interpreter at /usr/bin/python, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible/2.11/reference_appendices/interpreter_discovery.html for more information.
+ok: [10.0.10.227]
+ok: [10.0.10.160]
+
+TASK [Install Docker] **************************************************************************************************
+
+changed: [10.0.10.227]
+changed: [10.0.10.160]
+
+PLAY RECAP *************************************************************************************************************
+10.0.10.160                : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+10.0.10.227                : ok=2    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+```
        
 EXTRA 1. Write a playbook for installing Docker and one of the (LAMP/LEMP stack, Wordpress, ELK, MEAN - GALAXY do not use) in Docker.
 EXTRA 2. Playbooks should not have default creds to databases and/or admin panel.
