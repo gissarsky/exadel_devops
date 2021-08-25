@@ -3,13 +3,15 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh "docker build -t jenkins_image .
+                sh "
+                docker build -t jenkins_image /Task4/
                 "                
             }
         }
         stage("run") {
             steps {
-                sh "docker run -rm jenkins_image
+                sh "
+                docker run -rm jenkins_image
                 "                
             }
         }
