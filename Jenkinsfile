@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("build") {
             steps {
-                sh "docker build -t jenkins_image ./Task4/Dockerfile"         
+                sh "docker build -t jenkins_image -f Task4/Dockerfile ."         
             }
         }
         stage("run") {
