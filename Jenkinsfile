@@ -8,7 +8,7 @@ pipeline {
         }
         stage("run") {
             steps {
-                sh "docker container run -d --name jenkins_image"                
+                sh "docker container run -d --name jenkis_container jenkins_image"                
             }
         }
     }
