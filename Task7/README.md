@@ -62,7 +62,7 @@ Creating docker-elk_kibana_1        ... done
 **Testing the Installation**:
 
 1. Testing ELK.
-![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/elk_9200.png?raw=true)
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/elk.png?raw=true)
 
 2. **Open Kibana at http://192.168.2.59:5601**
 
