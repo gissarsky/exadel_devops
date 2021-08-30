@@ -126,7 +126,7 @@ Creating alertmanager ... done
 
 
 
-![Dashboard](/images/elk_dashboards.png)
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/elk_dashboards.png?raw=true)
 
 
 3.4 Study features and settings
