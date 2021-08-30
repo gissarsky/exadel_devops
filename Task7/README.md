@@ -124,6 +124,11 @@ Creating alertmanager ... done
 
 **This part of the assignment by configuring default[dashboards](https://github.com/stefanprodan/dockprom/tree/master/grafana/provisioning/dashboards)**
 
+
+
+![Dashboard](https://github.com/gissarsky/exadel_devops/tree/master/Task7/images/elk_dashboards.png)
+
+
 3.4 Study features and settings
 
 **Done**
