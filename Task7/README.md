@@ -59,6 +59,14 @@ Creating docker-elk_elasticsearch_1 ... done
 Creating docker-elk_logstash_1      ... done
 Creating docker-elk_kibana_1        ... done
 ```
+**Testing the Installation**:
+
+1. Testing ELK.
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/elk_9200.png?raw=true)
+
+2. **Open Kibana at http://192.168.2.59:5601**
+
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/Kibana.png?raw=true)
 
 2.2 Organize collection of logs from docker to ELK and receive data from running containers
 
@@ -66,13 +74,18 @@ Creating docker-elk_kibana_1        ... done
 
 2.3 Customize your dashboards in ELK
 
-**This part of the assignment is accomplished by installing ELK by according to this [documentation](https://logz.io/blog/docker-logging/)** 
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/metricbeat.png?raw=true)
+
 
 EXTRA 2.4: Set up filters on the Logstash side (get separate docker_container and docker_image fields from the message field)
 
 2.5 Configure monitoring in ELK, get metrics from your running containers
 
-**This part of the assignment is accomplished by installing ELK by according to this [documentation](https://logz.io/blog/docker-logging/)** 
+**This part of the assignment is accomplished by installing ELK by according to this [documentation](https://qbox.io/blog/monitoring-docker-containers-with-metricbeat-elasticsearch-and-kibana)** 
+
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/metricbeat_check.png?raw=true)
+
+![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/containers.png?raw=true)
 
 2.6 Study features and settings
 
@@ -123,8 +136,6 @@ Creating alertmanager ... done
 3.3 Set up Dashboards
 
 **This part of the assignment by configuring default[dashboards](https://github.com/stefanprodan/dockprom/tree/master/grafana/provisioning/dashboards)**
-
-
 
 ![Dashboard](https://github.com/gissarsky/exadel_devops/blob/master/Task7/images/elk_dashboards.png?raw=true)
 
