@@ -20,30 +20,35 @@ EXTRA 1.2.1: Complete this task using ansible
 
 1.3 Make several of your own dashboards, where to output data from your triggers (you can manually trigger it)
 
-**This part of the assignment is accomplished by installing Zabbix on AWS EC2 Ubuntu Server by according to this [documentation](https://www.zabbix.com/documentation/current/manual/web_interface/frontend_sections/monitoring/dashboard)** 
+**This part of the assignment is accomplished according to this [documentation](https://www.zabbix.com/documentation/current/manual/web_interface/frontend_sections/monitoring/dashboard)** 
 
 
 1.4 Active check vs passive check - use both types.
-**This part of the assignment is accomplished by installing Zabbix on AWS EC2 Ubuntu Server by according to this [documentation](https://blog.zabbix.com/zabbix-agent-active-vs-passive/9207/)** 
+
+**This part of the assignment is accomplished according to this [documentation](https://blog.zabbix.com/zabbix-agent-active-vs-passive/9207/)** 
 
 1.5 Make an agentless check of any resource (ICMP ping)
 
-**This part of the assignment is accomplished by installing Zabbix on AWS EC2 Ubuntu Server by according to this [documentation](http://woshub.com/zabbix-simple-icmp-ping-checks/)** 
+**This part of the assignment is accomplished by according to this [documentation](http://woshub.com/zabbix-simple-icmp-ping-checks/)** 
 
 
 1.6 Provoke an alert - and create a Maintenance instruction
 
-**This part of the assignment is accomplished by installing Zabbix on AWS EC2 Ubuntu Server by according to this [documentation](https://bestmonitoringtools.com/zabbix-alerts-setup-zabbix-email-notifications-escalations/)** 
+**This part of the assignment is accomplished according to this [documentation](https://bestmonitoringtools.com/zabbix-alerts-setup-zabbix-email-notifications-escalations/)** 
+
 >If an alert occurs, a message will be sent to the email
 
 1.7 Set up a dashboard with infrastructure nodes and monitoring of hosts and software installed on them
+
 **Done**
 
 2. ELK:
 Nobody is forgotten and nothing is forgotten.
+
 >**Due to resource limitations on AWS EC2 t2.micro, all further tasks are performed locally.**
 
 2.1 Install and configure ELK
+
 **This part of the assignment is accomplished by installing ELK by according to this [documentation](https://github.com/deviantony/docker-elk)** 
 
 >The Dockerized ELK will be installed
@@ -70,12 +75,16 @@ EXTRA 2.4: Set up filters on the Logstash side (get separate docker_container an
 **This part of the assignment is accomplished by installing ELK by according to this [documentation](https://logz.io/blog/docker-logging/)** 
 
 2.6 Study features and settings
+
 **Done**
 
 3. Grafana:
 3.1 Install Grafana
+
 **This part of the assignment is accomplished by according to this [documentation](https://github.com/stefanprodan/dockprom)**
+
 >It will set up Prometheus, Grafana, cAdvisor, Node Exporter and alerting with AlertManager.
+
 **Output should be as follow**:
 ```
 Creating prometheus   ... done
@@ -112,7 +121,9 @@ Creating alertmanager ... done
 ```
 
 3.3 Set up Dashboards
+
 **This part of the assignment by configuring default[dashboards](https://github.com/stefanprodan/dockprom/tree/master/grafana/provisioning/dashboards)**
 
 3.4 Study features and settings
+
 **Done**
