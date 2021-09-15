@@ -1,14 +1,30 @@
 pipeline {
     agent { label "agent1" }
     stages {
-        stage("build") {
+        stage("build app") {
             steps {
-                sh "docker build -t jenkins_image -f Task4/Dockerfile ."         
-            }
+                script {
+                    echo "building the app.." 
+                }
         }
-        stage("run") {
+        stage("build image") {
             steps {
-                sh "docker container run -d --name jenkis_container jenkins_image"                
+                script {
+                    echo "building the shuup docker image.."
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PSW', usernameVariable: 'USER')]) {
+                        sh 'docker build -t gissarsky/shuup:1.0 .'
+                        sh "echo $ PSW | docker login -u $USER --password-stdin"
+                        sh 'docker push gissarsky/shuup:1.0'
+                    }    
+                }
+        }
+        stage("deployment") {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+                AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
+            }
+            steps {
+                sh "kubcetl create deployment"                
             }
         }
     }
