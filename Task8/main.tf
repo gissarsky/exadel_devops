@@ -1,5 +1,6 @@
 # Configure provider AWS, with region eu-west-1
 provider "aws" {
+    alias = "west"
     region = "eu-west-2"
 }
 
