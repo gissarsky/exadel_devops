@@ -369,12 +369,27 @@ gissarsky@NetDevOps:~/.kube$
 ```
   **Jenkinsfile's** Docker hub image creation stage.
 
-  21. Check the current state of pods:
+
+  21. Run the pipeline:
+
+  **The output of the Docker hub image build stage:**
+  ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/docker-hub_image_builed_stage.png?raw=true)
+
+  **The output of the Docker hub image build stage:**
+  ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/eks_shuup_deployment_stage.png?raw=true)
+ 
+
+  22. Stage Success view:
+
+  ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/stage_view.png?raw=true)
+
+
+  23. Check the current state of pods:
 
   ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_get_pod.png?raw=true)
 
 
-  21. Check the current state of container
+  24. Check the current state of container
 
 ```
 kubectl describe pod shuup-app-788fc4bc45-7zfkj
@@ -438,7 +453,7 @@ Events:
   Normal  Started    9m9s  kubelet            Started container shuup-app
 ```
 
-  22. Check the running service:
+  25. Check the running service:
   **The output should be as follows:**
 
 ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_get_service.png?raw=true)
