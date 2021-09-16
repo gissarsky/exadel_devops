@@ -289,13 +289,13 @@ spec:
 
   **Prerequisites:**
 
-  15. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command line tool.
+  15. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command line tool on local machine for further configuration of the EKS cluster
 
-  The result of installing **kubectl** inside the container:
+  The result of installing **kubectl**:
 
   ![Kubectl](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_on_local_machines.png?raw=true)
 
-  16. Install [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) tool inside Jenkins container
+  16. Install [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) tool.
 
   The result of installing **aws-iam-authenticator**:
 
