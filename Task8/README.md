@@ -344,7 +344,7 @@ gissarsky@NetDevOps:~/.kube$
 ```
   **Jenkinsfile's** Docker hub image creation stage.
 
-  19. Check the [Docker Hub Repository](). :
+  19. Check the [Docker Hub Repository](https://hub.docker.com/repository/docker/exadeldevops/shuup). :
 
   ![AWS IAM Authenticator](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/docker-hub_image.png?raw=true)
 
