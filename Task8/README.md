@@ -375,7 +375,7 @@ gissarsky@NetDevOps:~/.kube$
   **The output of the Docker hub image build stage:**
   ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/docker-hub_image_builed_stage.png?raw=true)
 
-  **The output of the Docker hub image build stage:**
+  **The output of the deployment to the EKS cluster:**
   ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/eks_shuup_deployment_stage.png?raw=true)
  
 
