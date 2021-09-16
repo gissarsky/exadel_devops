@@ -203,7 +203,7 @@ users:
 
   >In the certificate-authority-data: <base64-encoded-ca-cert> field you must specify the **certificate authority** data from the cluster settings
 
-  ![Certificate Authority](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/eks_cert_auth.png?raw=true)
+  ![Certificate Authority](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/eks_cert_author.png?raw=true)
 
   >In the - "<cluster-name>" field you must specify the **cluster name**. In my case it is **exadel-devops-cluster** 
 
