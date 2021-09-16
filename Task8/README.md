@@ -221,7 +221,7 @@ docker cp config ea37741d3252:/home/jenkins/.kube
 
 The result of the creating the **config file** inside the container:
 
-![Kube Config](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kube_config_indide_container.png?raw=true)
+![Kube Config](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kube_config_indide_containers.png?raw=true)
 
   9. Add AWS credentials on Jenkins for AWS account authentication
 
