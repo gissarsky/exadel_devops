@@ -225,12 +225,13 @@ The result of the creating the **config file** inside the container:
 
   9. Add AWS credentials on Jenkins for AWS account authentication
 
-  10. Create credentials for AWS User inside Jenkins 
+  10. Create credentials for AWS User inside Jenkins:
+
     - Use the **Secret text** Kind 
     - Use the **jenkins_aws_access_key_id**
     - Use the **jenkins_aws_secret_access_key**
 
-    The result of addeing credentialt to the Jenkins:
+    The result of adding credentialt to the Jenkins:
 
   ![AWS Jenkins Credentials](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/aws_jenkins_creds.png?raw=true)
 
@@ -309,8 +310,8 @@ kubectl create secret docker-registry exadel-registry-key \
 > --docker-username=exadeldevops \
 > --docker-password=mydocerhubpsw
 ```
-  18. Check the output 
-  
+    Check the output
+
   **The output should be as follows:**
 
 ```
@@ -321,13 +322,65 @@ exadel-registry-key   kubernetes.io/dockerconfigjson        1      15s
 gissarsky@NetDevOps:~/.kube$
 ```
 
-Check the current state of container
+  
+18. We need to configure Jenkinsfile to build an image from source files when you start the pipeline (see Jenkinsfile in repository - https://github.com/gissarsky/shuup.git
+) and push it to Docker Hub. 
+
+**This part is implemented by the "build image" stage of the Jenkins file code**
+
+```
+        stage("build image") {
+            steps {
+                script {
+                    echo "building the shuup docker image.."
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-repo', passwordVariable: 'PSW', usernameVariable: 'USER')]) {
+                        sh 'docker build -t exadeldevops/shuup:1.0 .'
+                        sh "docker login -u $USER -p $PSW"
+                        sh 'docker push exadeldevops/shuup:1.0'
+                    }    
+                }
+            }
+        }
+```
+  **Jenkinsfile's** Docker hub image creation stage.
+
+  19. Check the [Docker Hub Repository](). :
+
+  ![AWS IAM Authenticator](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/docker-hub_image.png?raw=true)
+
+  20. Last we must configure the deployment of the application to the EKS cluster, using the created image of the application from the Docker Hub 
+
+  **This part is implemented by the "deployment" stage of the Jenkins file code**
+
+```
+        stage("deployment") {
+            environment {
+                AWS_ACCESS_KEY_ID = credentials('jenkins_aws_access_key_id')
+                AWS_SECRET_ACCESS_KEY = credentials('jenkins_aws_secret_access_key')
+                APP_NAME = 'shuup-app'
+            }
+            steps {
+                sh 'envsubst < kubernetes/deployment.yaml | kubectl apply -f -'
+                sh 'envsubst < kubernetes/service.yaml | kubectl apply -f -'                 
+            }
+        }
+    }
+}
+```
+  **Jenkinsfile's** Docker hub image creation stage.
+
+  21. Check the current state of pods:
+
+  ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_get_pod.png?raw=true)
+
+
+  21. Check the current state of container
 
 ```
 kubectl describe pod shuup-app-788fc4bc45-7zfkj
 ```
 
-The output should be as follows:
+**The output should be as follows:**
 
 ```
 gissarsky@NetDevOps:~/.kube$ kubectl describe pod shuup-app-788fc4bc45-7zfkj
@@ -385,14 +438,10 @@ Events:
   Normal  Started    9m9s  kubelet            Started container shuup-app
 ```
 
-Check the service:
+  22. Check the running service:
+  **The output should be as follows:**
 
-```
-gissarsky@NetDevOps:~/.kube$ kubectl get service
-NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)    AGE
-kubernetes   ClusterIP   172.20.0.1       <none>        443/TCP    29h
-shuup-app    ClusterIP   172.20.140.251   <none>        8000/TCP   42m
-```
+![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_get_service.png?raw=true)
 
 The project must be documented, step-by-step guides to deploy from scratch; 
 EXTRA: SonarQube integration.
