@@ -205,11 +205,9 @@ users:
 
   ![Certificate Authority](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/eks_cert_auth.png?raw=true)
 
-  >In the - "<cluster-name>" field you must specify the **cluster name** data from the cluster settings
+  >In the - "<cluster-name>" field you must specify the **cluster name**. In my case it is **exadel-devops-cluster** 
 
-  ![Cluster name](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/exadel-eks-cluster?raw=true)
-
-  7. Create **.kube directory** inside container inside the **/home/jenkins** directory
+   7. Create **.kube directory** inside container inside the **/home/jenkins** directory
 
 ```
 mkdir .kube
@@ -289,7 +287,7 @@ spec:
 
   >The Docker Registry will be configured using the kubectl tool from the local machine. To do this, we need to do the following preparatory steps:
 
-**Prerequisites:**
+  **Prerequisites:**
 
   15. Install [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/) command line tool.
 
