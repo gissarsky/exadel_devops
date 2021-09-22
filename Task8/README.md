@@ -458,5 +458,94 @@ Events:
 
 ![Pods](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kubectl_get_service.png?raw=true)
 
+### 5. Monitoring with ELK
+
+**Prerequisites:**
+
+  26. Configure [Helm](https://helm.sh/docs/intro/install/) in the local machine
+
+  The result of installing **helm**:
+
+  ![HELM](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/helm install.png?raw=true)
+
+  27. Deploying an Elasticsearch Cluster with HELM.
+
+  ```
+  $ helm repo add elastic https://Helm.elastic.co
+  $ curl -O https://raw.githubusercontent.com/elastic/Helm/charts/master/elasticsearch/examples/minikube/values.yaml
+  $ helm install elasticsearch elastic/elasticsearch -f ./values.yaml 
+  ```
+
+  The result of deploying **Elasticsearch Cluster**:
+
+  ![Elasticsearch Cluster](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/elastic_test.png?raw=true)
+
+  28.  Apply port forward to connect Elasticsearch from outside by the next command:
+
+```
+kubectl port-forward svc/elasticsearch-master 9200
+```
+    Check the output
+
+  **The output should be as follows:**
+
+```
+{
+  "name" : "elasticsearch-master-0",
+  "cluster_name" : "elasticsearch",
+  "cluster_uuid" : "HmNGS0gDSW6l4FW8VwT9rQ",
+  "version" : {
+    "number" : "7.14.0",
+    "build_flavor" : "default",
+    "build_type" : "docker",
+    "build_hash" : "dd5a0a2acaa2045ff9624f3729fc8a6f40835aa1",
+    "build_date" : "2021-07-29T20:49:32.864135063Z",
+    "build_snapshot" : false,
+    "lucene_version" : "8.9.0",
+    "minimum_wire_compatibility_version" : "6.8.0",
+    "minimum_index_compatibility_version" : "6.0.0-beta1"
+  },
+  "tagline" : "You Know, for Search"
+}
+```
+
+ 28.  Deploying Kibana with HELM by the next command:
+
+ ```
+ helm install kibana elastic/kibana
+ ```
+
+  The result of ideploying **Deploying Kibana**:
+
+  ![Kibna result](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kibana_deployed.png?raw=true)
+
+   29.  Apply port forward to connect Kibana from outside by the next command:
+
+```
+kubectl port-forward deployment/kibana-kibana 5601
+```
+    Check the output
+
+  The result of port forwarding of **Kibana**:
+
+  ![Port Forwarding Kibana](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/kibana_port_forwarding.png?raw=true)
+
+  30. Deploying Metricbeat with HELM by the next command:
+
+ ```
+ helm install metricbeat elastic/metricbeat
+ ```
+
+The result of deploying **Metricbeat**:
+
+  ![Metricbeat](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/metricbeat_deployed.png?raw=true)
+
+
+The result of deploying **ELK Monitoring**:
+
+  ![Elasticsearch Cluster](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/ELK_Monitoring.pngraw=true)
+
+### The Shuup aplication is available by [link](ac6b81d9a876043c88189904b7339d1c-328493035.eu-central-1.elb.amazonaws.com:8000)
+
 The project must be documented, step-by-step guides to deploy from scratch; 
 EXTRA: SonarQube integration.
