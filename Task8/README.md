@@ -543,9 +543,10 @@ The result of deploying **Metricbeat**:
 
 The result of deploying **ELK Monitoring**:
 
-  ![Elasticsearch Cluster](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/ELK_Monitoring.pngraw=true)
+  ![Elasticsearch Cluster](https://github.com/gissarsky/exadel_devops/blob/master/Task8/images/ELK_Monitoring.png?raw=true)
 
-### The Shuup aplication is available by [link](ac6b81d9a876043c88189904b7339d1c-328493035.eu-central-1.elb.amazonaws.com:8000)
+### The Shuup aplication
+Applicat is available by [link](ac6b81d9a876043c88189904b7339d1c-328493035.eu-central-1.elb.amazonaws.com:8000)
 
 The project must be documented, step-by-step guides to deploy from scratch; 
 EXTRA: SonarQube integration.
